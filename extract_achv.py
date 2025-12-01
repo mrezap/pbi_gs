@@ -47,12 +47,23 @@ EVALUATE
 
 HEADER = ["Period", "UNIQ ASH", "UNIQ SC", "Target Rofo", "Total Sales", "Target BO", "Achv BO", "Target QVO", "Achv QVO"]
 WORKSHEET_NAME = "data_achv"
+LOG_WORKSHEET = "logs"
 
 def main():
-    cfg = load_config()
-    with DataExtractor(cfg) as extractor:
-        count = extractor.extract_and_push(DAX_QUERY, WORKSHEET_NAME, HEADER)
-        logging.info(f"✅ Extraction complete: {count} rows processed")
+    try:
+        cfg = load_config()
+        with DataExtractor(cfg) as extractor:
+            count = extractor.extract_and_push(
+                DAX_QUERY, 
+                WORKSHEET_NAME, 
+                HEADER,
+                log_worksheet=LOG_WORKSHEET,
+                script_name="extract_achv"
+            )
+            logging.info(f"Extraction complete: {count} rows processed")
+    except Exception as e:
+        logging.exception("Error during extraction")
+        raise
 
 if __name__ == "__main__":
     main()
