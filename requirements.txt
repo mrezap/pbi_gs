@@ -1,0 +1,5 @@
+msal==1.24.1
+requests==2.31.0
+gspread==5.12.0
+python-dotenv==1.0.0
+urllib3==2.1.0
