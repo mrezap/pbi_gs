@@ -4,8 +4,11 @@ import base64
 from dataclasses import dataclass
 from dotenv import load_dotenv
 from typing import Optional, Dict
+from pathlib import Path
 
-load_dotenv()
+# Explicitly set .env path to the script's directory
+script_dir = Path(__file__).parent
+load_dotenv(dotenv_path=str(script_dir / ".env"))
 
 @dataclass
 class Config:
@@ -24,8 +27,8 @@ def load_config() -> Config:
         tenant_id=os.getenv("TENANT_ID", ""),
         client_id=os.getenv("CLIENT_ID", ""),
         client_secret=os.getenv("CLIENT_SECRET", ""),
-        username=os.getenv("USERNAME", ""),
-        password=os.getenv("PASSWORD", ""),
+        username=os.getenv("PBI_USERNAME", ""),
+        password=os.getenv("PBI_PASS", ""),
         workspace_id=os.getenv("WORKSPACE_ID", ""),
         dataset_id=os.getenv("DATASET_ID", ""),
         spreadsheet_id=os.getenv("SPREADSHEET_ID", ""),

@@ -12,6 +12,11 @@ class PowerBIAuth:
                 self.cfg.username and self.cfg.password):
             raise RuntimeError("Missing credentials in environment")
         
+        # FOR DEBUGGING
+        # logging.info("Using tenant_id: %s", self.cfg.tenant_id)
+        # logging.info("Using client_id: %s", self.cfg.client_id)
+        # logging.info("Using username: %s", self.cfg.username)
+        
         url = f'https://login.microsoftonline.com/{self.cfg.tenant_id}/oauth2/token'
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
         payload = {
