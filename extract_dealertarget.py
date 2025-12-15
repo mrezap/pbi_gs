@@ -41,8 +41,8 @@ SELECTCOLUMNS(
     "Brand", [Brand],
     "Dealer", [Dealer Full],
     "Total Target", [TTL_Target_Rofo],
-    "Total Sales", IF( ISBLANK( [Total_Nett_No_Tax] ), 0 ,[Total_Nett_No_Tax] ),
-    "QVO Potential", IF( ISBLANK( [QVO_Potential] ), 0 , [QVO_Potential] )
+    "Total Sales", COALESCE([Total_Nett_No_Tax], 0 ),
+    "QVO Potential", COALESCE([QVO_Potential], 0 )
 )
 """
 

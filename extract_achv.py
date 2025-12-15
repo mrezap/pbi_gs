@@ -34,12 +34,12 @@ EVALUATE
             "Period", IF( NOT ISBLANK( [Total Sales] ), FORMAT([Date], "MMM-yyyy" ) ),
             "ASH Uniqcode", [UNIQ ASH],
             "SC Uniqcode", [UNIQ SC],
-            "Target Rofo", IF( ISBLANK( [Target Rofo] ), 0, [Target Rofo] ),
-            "Total Sales", [Total Sales],
-            "Target BO", IF( ISBLANK( [Tgt BO] ), 0, [Tgt BO] ),
-            "Actual BO", IF( ISBLANK( [Acv BO] ), 0, [Acv BO] ),
-            "Target QVO", IF( ISBLANK( [Tgt QVO] ), 0, [Tgt QVO] ),
-            "Actual QVO", IF( ISBLANK( [Acv QVO] ), 0, [Acv QVO] )
+            "Target Rofo", COALESCE( [Target Rofo], 0 ),
+            "Total Sales", COALESCE( [Total Sales], 0 ),
+            "Target BO", COALESCE( [Tgt BO], 0 ),
+            "Actual BO", COALESCE( [Acv BO], 0 ),
+            "Target QVO", COALESCE( [Tgt QVO], 0 ),
+            "Actual QVO", COALESCE( [Acv QVO], 0 )
         ),
         NOT ISBLANK( [Period] )
     )
