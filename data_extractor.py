@@ -36,8 +36,8 @@ class DataExtractor:
         message = ""
         
         try:
-            # Extract dari Power BI
-            rows = self.pbi_client.execute_dax_query(dax_query)
+            # Extract from Power BI
+            rows = self.pbi_client.execute_dax_query(dax_query, timeout=60)
             
             if not rows:
                 logging.warning("No data returned from Power BI query")
