@@ -6,7 +6,7 @@ from urllib3.util.retry import Retry
 from typing import List, Dict
 
 class PowerBIClient:
-    def __init__(self, token: str, workspace_id: str, dataset_id: str, timeout: int = 30):
+    def __init__(self, token: str, workspace_id: str, dataset_id: str, timeout: int = 90):
         self.token = token
         self.workspace_id = workspace_id
         self.dataset_id = dataset_id

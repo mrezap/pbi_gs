@@ -35,9 +35,11 @@ class DataExtractor:
         status = "SUCCESS"
         message = ""
         
+        #query_timeout = timeout or self.timeout
+        
         try:
             # Extract from Power BI
-            rows = self.pbi_client.execute_dax_query(dax_query, timeout=60)
+            rows = self.pbi_client.execute_dax_query(dax_query, timeout=120)
             
             if not rows:
                 logging.warning("No data returned from Power BI query")
