@@ -31,10 +31,14 @@ class PowerBIClient:
             "serializerSettings": {"includeNulls": True}
         }
         
+        query_timeout = timeout or self.timeout
         logging.info(f"Executing DAX query on dataset {self.dataset_id}...")
         try:
             resp = self.session.post(url, headers=headers, json=payload, timeout=self.timeout)
             resp.raise_for_status()
+        except requests.Timeout:
+            logging.error(f"Timeout! Query execution took more than {query_timeout}s")
+            raise RuntimeError(f"Power BI API timeout after {query_timeout}s - dataset maybe too large")
         except requests.HTTPError as e:
             logging.error("Power BI API error: %s", resp.text[:2000])
             logging.error("Status code: %d", resp.status_code)
