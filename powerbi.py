@@ -20,7 +20,7 @@ class PowerBIClient:
         s.mount("https://", HTTPAdapter(max_retries=retries))
         return s
     
-    def execute_dax_query(self, dax_query: str) -> List[Dict]:
+    def execute_dax_query(self, dax_query: str, timeout: int = None) -> List[Dict]:
         url = f"{self.base_url}/groups/{self.workspace_id}/datasets/{self.dataset_id}/executeQueries"
         headers = {
             "Authorization": f"Bearer {self.token}",
